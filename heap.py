@@ -3,7 +3,7 @@ class Heap:
         self.heap=[]
 
     def parent(self,index):
-        return index // 2
+        return (index-1)// 2
 
     def leftchild(self,index):
         return 2*index+1
@@ -21,42 +21,43 @@ class Heap:
 
             index=self.parent(index)
 
-    def delete(self):
-        self.heap[0]=self.heap[-1]
-        root=self.heap.pop()
-        self.heapifydown(0)
+    def delete(self,length):
+        root = self.heap[0]
+        self.heap[0]=self.heap[length]
+        self.heap.pop(length)
+        self.heapifydown(0,length)
+        self.heap.append(root)
         return root
 
-    def heapifydown(self,index):
+    def heapifydown(self,index,length):
         small=index
-        right=self.rightchild(index)
         left=self.leftchild(index)
-        length=len(self.heap)
-        if left<length and self.heap[left]<self.heap[small]:
+        right=self.rightchild(index)
+        if left<length and left<len(self.heap) and self.heap[left]<self.heap[small] and self.heap[left]<self.heap[right]:
             small=left
-        elif right<length and self.heap[right]<self.heap[small]:
+        elif right<length and right<len(self.heap) and self.heap[right]<self.heap[small] and self.heap[right]<self.heap[left]:
             small=right
 
-        if small != index:
-            self.heap[index],self.heap[small]=self.heap[small],self.heap[index]
-            self.heapifydown(small)
+        if small!=index:
+            if self.heap[small]<self.heap[index]:
+                self.heap[small],self.heap[index]=self.heap[index],self.heap[small]
+            self.heapifydown(small,length)
 
     def min_value(self):
         return self.heap[0]
 
 def main():
     heap=Heap()
-    heap.add(10)
-    heap.add(20)
-    heap.add(15)
-    heap.add(12)
-    heap.add(40)
-    heap.add(25)
-    heap.add(18)
 
-    print(heap.heap)
-    print(heap.delete())
-    print(heap.heap)
+    arr=[10,20,15,12,40,25,18]
+    for item in arr:
+        heap.add(item)
+
+    length=len(heap.heap)-1
+
+    while length+2>0:
+        heap.delete(length)
+        length = length - 1
 
 if __name__=='__main__':
     main()
