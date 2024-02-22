@@ -29,6 +29,13 @@ class Heap:
         self.heap.append(root)
         return root
 
+    def sort(self):
+        length = len(self.heap)
+
+        while length > 0:
+            self.delete(length - 1)
+            length = length - 1
+
     def heapifydown(self,index,length):
         small=index
         left=self.leftchild(index)
@@ -56,11 +63,7 @@ def main():
     print("Original Heap")
     print(heap.heap)
 
-    length=len(heap.heap)-1
-
-    while length+2>0:
-        heap.delete(length)
-        length = length - 1
+    heap.sort()
 
     print("\nSorted Heap")
     print(heap.heap)
