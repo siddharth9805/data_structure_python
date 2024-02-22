@@ -53,11 +53,17 @@ def main():
     for item in arr:
         heap.add(item)
 
+    print("Original Heap")
+    print(heap.heap)
+
     length=len(heap.heap)-1
 
     while length+2>0:
         heap.delete(length)
         length = length - 1
+
+    print("\nSorted Heap")
+    print(heap.heap)
 
 if __name__=='__main__':
     main()
