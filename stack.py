@@ -13,7 +13,7 @@ class Stack:
 
     def pop(self):
         if self.is_empty():
-            raise "lavede khali hai"
+            raise "empty"
         return self.item.pop()
 
     def length(self):
@@ -21,7 +21,7 @@ class Stack:
 
     def peek(self):
         if self.is_empty():
-            raise "lavede khali hai"
+            raise "empty"
         else:
             return self.item[-1]
 

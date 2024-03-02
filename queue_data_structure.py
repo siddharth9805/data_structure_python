@@ -13,13 +13,13 @@ class Queue():
 
     def pop(self):
         if self.is_empty():
-            raise "Gandu Khali hai"
+            raise "empty"
         else:
             return self.item.pop(0)
 
     def peek(self):
         if self.is_empty():
-            raise "madarchod khali hai"
+            raise "empty"
         else:
             return self.item[0]
 
