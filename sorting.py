@@ -1,3 +1,4 @@
+from ll import ll
 class Sort:
     def __init__(self,data):
         self.arr=data
@@ -35,7 +36,7 @@ class Sort:
 
         return self.arr
 
-    def quciksort(self):
+    def qucik(self):
         return self._quicksort_recursion(self.arr)
 
     def _quicksort_recursion(self,arr):
@@ -54,7 +55,7 @@ class Sort:
         right_partition = self._quicksort_recursion(arr[i + 2:])
         return left_partition + [arr[i + 1]] + right_partition
 
-    def mergesort(self):
+    def merge(self):
         return self._merge_sort_recursion(self.arr)
 
     def _merge_sort_recursion(self, arr):
@@ -86,30 +87,66 @@ class Sort:
             r += 1
         return arr
 
-    def bucket_sort(self):
-        length=len(self.arr)
-        max_val=max(self.arr)
-        min_val = min(self.arr)
-        range_val=max_val-min_val+1
-
-        buckets=[[] for _ in range(length)]
+    def bucket(self):
+        bucket=[ll() for _ in range(max(self.arr)+1)]
+        output=[]
 
         for i in self.arr:
-            index=(min_val * i) * (max_val-1)//range_val
-            buckets[index].append(i)
-        self.arr.clear()
-        for bucket in buckets:
-            self.arr.extend(sorted(bucket))
-        return self.arr
+            bucket[i].add_node(i)
 
-    def radix_sort(self):
-        pass
+        for i in range(len(bucket)):
+            length=bucket[i].length
+
+            while length>=0:
+                item = bucket[i].del_node_begin()
+                if item is not None:
+                    output.append(item)
+                length-=1
+
+        return output
+
+    def radixsort(self):
+        max_value=max(self.arr)
+        count = 0 # For counting maximum digit of a number in an array
+        arr=self.arr.copy()
+
+        while max_value > 0:
+            count += 1
+            max_value = max_value // 10
+
+        for i in range(count):
+            arr=self._radix_helper(arr,i)
+        return arr
+
+    def _radix_helper(self,arr,position):
+        bucket = [ll() for _ in range(max(arr) + 1)]
+        output = []
+        digit_arr=arr.copy()
+
+        while position>0:
+            for i in range(len(digit_arr)):
+                digit_arr[i]=digit_arr[i]//10
+            position-=1
+
+        for i in range(len(arr)):
+            bucket[digit_arr[i]%10].add_node(arr[i])
+
+        for i in range(len(bucket)):
+            length = bucket[i].length
+
+            while length >= 0:
+                item = bucket[i].del_node_begin()
+                if item is not None:
+                    output.append(item)
+                length -= 1
+        return output
 
 def main():
-    arr=[8,2,4,7,1,3,9,6,5]
+    arr=[33,15,25,12,23,17,32,22]
     sort=Sort(arr)
 
-    print(sort.bucket_sort())
+    print(sort.radixsort())
+
 
 if __name__=="__main__":
     main()

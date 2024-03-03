@@ -6,6 +6,7 @@ class Node:
 class ll:
     def __init__(self):
         self.head=None
+        self.length = 0
 
     def add_node(self,data):
         new_node=Node(data)
@@ -20,6 +21,7 @@ class ll:
             temp=temp.next
 
         temp.next=new_node
+        self.length+=1
 
     def insert_begin(self,data):
         if self.head is None:
@@ -28,12 +30,14 @@ class ll:
         temp=self.head
         self.head=Node(data)
         self.head.next=temp
+        self.length += 1
 
     def insert_end(self,data):
         temp=self.head
         while temp.next:
             temp=temp.next
         temp.next=Node(data)
+        self.length += 1
 
     def insert_after(self,data,nextdata):
         temp=self.head
@@ -44,6 +48,19 @@ class ll:
             temp=temp.next
         k.next=temp.next
         temp.next=k
+        self.length += 1
+
+    def del_node_begin(self):
+        if self.head is None:
+            return
+
+        temp=self.head
+        item = temp.data
+        self.head=temp.next
+        del(temp)
+        self.length -= 1
+        return item
+
 
     def insert_before(self,data,beforedata):
         temp=self.head
@@ -57,6 +74,7 @@ class ll:
             temp=temp.next
         k.next=flag.next.next
         flag.next=k
+        self.length += 1
 
     def printll(self):
         temp=self.head
