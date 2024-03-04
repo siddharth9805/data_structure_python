@@ -114,11 +114,11 @@ def main():
     bst.add(17)
     bst.add(25)
 
-    print("Found" if bst.search(int(input("Enter the number :"))) else "Not found")
+    # print("Found" if bst.search(int(input("Enter the number :"))) else "Not found")
     print("Inorder ",bst.inorder_traversal())
     # print("Preorder ",bst.preorder_traversal())
     # print("Postorder ",bst.postorder_traversal())
-    bst.delete(20)
+    bst.delete(15)
     print("Inorder ", bst.inorder_traversal())
 
 if __name__=='__main__':
