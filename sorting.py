@@ -12,8 +12,10 @@ class Sort:
             for j in range(i+1,len(arr)):
                 if arr[j]<min:
                     index=j
+                    min=self.arr[j]
 
-            arr[i]=arr[index]
+            arr[i],arr[index]=arr[index],arr[i]
+
         return arr
 
     def insersion(self):
@@ -145,7 +147,7 @@ def main():
     arr=[33,15,25,12,23,17,32,22]
     sort=Sort(arr)
 
-    print(sort.radixsort())
+    print(sort.selection())
 
 
 if __name__=="__main__":
