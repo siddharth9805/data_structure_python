@@ -147,7 +147,7 @@ def main():
     arr=[33,15,25,12,23,17,32,22]
     sort=Sort(arr)
 
-    print(sort.selection())
+    print(sort.bubble())
 
 
 if __name__=="__main__":

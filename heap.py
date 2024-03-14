@@ -40,9 +40,9 @@ class Heap:
         small=index
         left=self.leftchild(index)
         right=self.rightchild(index)
-        if left<length and left<len(self.heap) and self.heap[left]<self.heap[small] and self.heap[left]<self.heap[right]:
+        if left<length and self.heap[left]<self.heap[small] and self.heap[left]<self.heap[right]:
             small=left
-        elif right<length and right<len(self.heap) and self.heap[right]<self.heap[small] and self.heap[right]<self.heap[left]:
+        elif right<length and self.heap[right]<self.heap[small] and self.heap[right]<self.heap[left]:
             small=right
 
         if small!=index:

@@ -25,6 +25,7 @@ class Stack:
         else:
             return self.item[-1]
 
+
 def main():
     stack=Stack()
     stack.add(1)

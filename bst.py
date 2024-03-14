@@ -53,7 +53,7 @@ class BST:
     def _inorder_traversal(self,root):
         if root:
             self._inorder_traversal(root.left)
-            print(root.data, end='->')
+            print(root.data,'->' , end=' ')
             self._inorder_traversal(root.right)
 
     def preorder_traversal(self):
@@ -61,9 +61,31 @@ class BST:
 
     def _preorder_traversal(self,root):
         if root:
-            print(root.data, end='->')
+            print(root.data,'->' ,end=' ')
             self._preorder_traversal(root.left)
             self._preorder_traversal(root.right)
+
+    def bst_check(self):
+        self._bst_check(self.root)
+
+    def _bst_check(self,root):
+        if root is None:
+            return None
+
+        if root.left is None:
+            if root.right and  root.data<root.right.data:
+                flag=True
+        elif root.right is None:
+            if root.left and  root.data<root.left.data:
+                flag=True
+        elif root.left.data<root.data<root.right.data:
+            flag=True
+        else:
+            return False
+
+        self._bst_check(root.left)
+        self._bst_check(root.right)
+        return flag
 
     def postorder_traversal(self):
         self._postorder_traversal(self.root)
@@ -72,36 +94,40 @@ class BST:
         if root:
             self._postorder_traversal(root.left)
             self._postorder_traversal(root.right)
-            print(root.data, end='->')
+            print(root.data,'->', end=' ')
 
     def delete(self,data):
         self.root=self._delete(self.root,data)
 
-    def _delete(self,root,data):
+    def _delete(self, root, data):
         if root is None:
-            return
+            return None
 
-        if data<root.data:
-            self.left=self._delete(root.left,data)
-        elif data>root.data:
-            self.right=self._delete(root.right,data)
+        # Traverse the tree to find the node to delete
+        if data < root.data:
+            root.left = self._delete(root.left, data)
+        elif data > root.data:
+            root.right = self._delete(root.right, data)
         else:
-            if root.left is None:
-                return root.right
-            elif root.right is None:
-                return root.left
+            if root.left is None or root.right is None:
+                return root.left or root.right
 
-            root.data= self._inorder_successor(root.right).data
+            # Node with two children: Get the inorder successor
+            temp = self._inorder_successor(root.right)
 
-            root.right=self._delete(root.right,root.data)
+            # Copy the inorder successor's content to this node
+            root.data = temp.data
+
+            # Delete the inorder successor
+            root.right = self._delete(root.right, temp.data)
 
         return root
 
-
-    def _inorder_successor(self,root):
-        while root.left is not None:
-            root=root.left
-        return root
+    def _inorder_successor(self, root):
+        current = root
+        while current.left is not None:
+            current = current.left
+        return current
 
 
 def main():
@@ -111,15 +137,15 @@ def main():
     bst.add(20)
     bst.add(8)
     bst.add(12)
-    bst.add(17)
     bst.add(25)
+    bst.add(17)
+    bst.add(19)
 
-    # print("Found" if bst.search(int(input("Enter the number :"))) else "Not found")
-    print("Inorder ",bst.inorder_traversal())
-    # print("Preorder ",bst.preorder_traversal())
-    # print("Postorder ",bst.postorder_traversal())
+    print("Found" if bst.search(int(input("Enter the number :"))) else "Not found")
+    bst.preorder_traversal()
+    print()
     bst.delete(15)
-    print("Inorder ", bst.inorder_traversal())
+    bst.preorder_traversal()
 
 if __name__=='__main__':
     main()
