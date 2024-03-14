@@ -28,7 +28,9 @@ Each script can be run independently to demonstrate its corresponding data struc
 - **Palindrome Detection (`palindrome_recursion.py`)**: Uses recursion to check if a string is a palindrome.
 - **Queue (`queue_data_structure.py`)**: Demonstrates queue implementation using Python lists.
 - **Stack (`stack.py`)**: Implements a stack with its fundamental operations.
-- **Sort (`sort.py`)**: Implements all the imported sorting algorithms.
+- **Sort (`sort.py`)**: Implements all the important sorting algorithms.
+- **Sort_Alternatives (`sort_alternative.py`)**: Implements all the important sorting algorithms in alternative method.
+- **Circular_linklist (`circular_queue.py`)**: Implemented circular queue which has all basic operation
 
 For detailed usage and examples, refer to the specific sections below.
 
