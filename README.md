@@ -30,7 +30,7 @@ Each script can be run independently to demonstrate its corresponding data struc
 - **Stack (`stack.py`)**: Implements a stack with its fundamental operations.
 - **Sort (`sort.py`)**: Implements all the important sorting algorithms.
 - **Sort_Alternatives (`sort_alternative.py`)**: Implements all the important sorting algorithms in alternative method.
-- **Circular_linklist (`circular_queue.py`)**: Implemented circular queue which has all basic operation
+- **Circular_linklist (`circular_queue.py`)**: Implemented circular queue which has all basic operation implemented.
 
 For detailed usage and examples, refer to the specific sections below.
 
