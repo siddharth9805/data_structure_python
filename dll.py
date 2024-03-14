@@ -42,6 +42,7 @@ def main():
     list.add_element(1)
     list.add_element(2)
     list.add_element(3)
+    list.printdll()
     list.printdll_reverse()
 
 if __name__=="__main__":
