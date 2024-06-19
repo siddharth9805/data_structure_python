@@ -41,7 +41,7 @@ class Circularll:
             print(self.queue[self.front+i % self.size], end=' ')
 
 def main():
-    cq=Circularll()
+    cq=Circularll(5)
     cq.enqueue(1)
     cq.enqueue(2)
     cq.enqueue(3)

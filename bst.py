@@ -129,6 +129,77 @@ class BST:
             current = current.left
         return current
 
+    def bfs(self):
+        if not self.root:
+            return []
+        queue = [self.root]  # Initialize queue with root node
+        result = []  # List to store the traversal result
+        while queue:
+            current_node = queue.pop(0)  # Dequeue the front node from the queue
+            if current_node is None:
+                result.append(None)  # Append None for missing children
+                continue  # Skip the rest of the loop for None values
+            else:
+                result.append(current_node.data)  # Process the current node
+
+            # Check and enqueue left child, or enqueue None if no left child
+            if current_node.left:
+                queue.append(current_node.left)
+            else:
+                queue.append(None)  # Use None to represent missing left child
+
+            # Check and enqueue right child, or enqueue None if no right child
+            if current_node.right:
+                queue.append(current_node.right)
+            else:
+                queue.append(None)  # Use None to represent missing right child
+
+            # Early stopping condition to avoid infinite loop with None values
+            if all(node is None for node in queue):
+                break
+
+        print(result)  # Optionally, return the result instead of printing
+
+
+    def dfs(self):
+        print(self._dfs_preorder(self.root))
+
+    def _dfs_preorder(self,root):
+        if not root:
+            return []
+        result = [root.data]
+        result += self._dfs_preorder(root.left)
+        result += self._dfs_preorder(root.right)
+        return result
+
+    def _common_ancistor(self,root,p,q):
+        if p<root.data and q<root.data:
+            return self._common_ancistor(root.left,p,q)
+
+        if p>root.data and q>root.data:
+            return self._common_ancistor(root.right,p,q)
+        return root
+    def distance_calculation(self,root,val,count):
+        if root.data==val:
+            return count
+
+        if root.right and root.data<val:
+            count+=1
+            return self.distance_calculation(root.right,val,count)
+
+        if root.left and root.data>val:
+            count += 1
+            return self.distance_calculation(root.left, val, count)
+    def distance_between_nodes(self,p,q):
+        root=self._common_ancistor(self.root,p,q)
+        if p<q:
+            left=p
+            right=q
+        else:
+            left = q
+            right = p
+        return self.distance_calculation(root.left,left,1) + self.distance_calculation(root.right,right,1)
+
 
 def main():
     bst=BST()
@@ -141,11 +212,15 @@ def main():
     bst.add(17)
     bst.add(19)
 
-    print("Found" if bst.search(int(input("Enter the number :"))) else "Not found")
-    bst.preorder_traversal()
-    print()
-    bst.delete(15)
-    bst.preorder_traversal()
+    # print("Found" if bst.search(int(input("Enter the number :"))) else "Not found")
+    # bst.preorder_traversal()
+    # print()
+    # bst.delete(15)
+    # bst.preorder_traversal()
+    bst.bfs()
+    # print(bst.distance_between_nodes(19,25))
+    # bst.inorder_traversal()
+
 
 if __name__=='__main__':
     main()

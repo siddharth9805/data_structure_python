@@ -14,12 +14,20 @@ class dll:
             self.head = k
             return
 
-        left_node = self.head
-        while left_node.next is not None:  # Ensure we stop at the last node
-            left_node = left_node.next
+        if data<self.head.data:
+            k.next=self.head
+            self.head.prev=k
+            self.head=k
 
-        left_node.next = k
-        k.prev = left_node  # It should be k.prev not k.previous
+        curr=self.head
+        while curr and data>curr.data:
+            prev=curr
+            curr=curr.next
+
+        temp=prev.next
+        prev.next=k
+        k.prev=prev
+        k.next=temp
 
     def printdll(self):
         temp=self.head
@@ -39,11 +47,11 @@ class dll:
 
 def main():
     list=dll()
-    list.add_element(1)
-    list.add_element(2)
-    list.add_element(3)
+    list.add_element(5)
+    list.add_element(9)
+    list.add_element(7)
     list.printdll()
-    list.printdll_reverse()
+    # list.printdll_reverse()
 
 if __name__=="__main__":
     main()

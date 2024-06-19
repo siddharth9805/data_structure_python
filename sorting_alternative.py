@@ -42,15 +42,17 @@ class Sort:
         return arr
 
     def bubble(self):
-        return self._bubble(self.arr,0)
+        return self._bubble(self.arr,0,len(self.arr))
 
-    def _bubble(self,arr,pointer):
-        j=pointer+1
-        while pointer<len(arr):
-            if arr[pointer]<arr[j]:
-                arr[pointer],arr[j]=arr[j],arr[pointer]
-        pointer+=1
-        self._bubble(arr,pointer)
+    def _bubble(self,arr,i,n):
+        if i==n:
+            return
+
+        for j in range(1,n):
+            if arr[j-1]>arr[j]:
+                arr[j-1],arr[j]=arr[j],arr[j-1]
+
+        self._bubble(arr,i+1,n)
         return arr
 
     def quick_sort(self):
@@ -76,7 +78,7 @@ def main():
     arr = [33, 15, 25, 12, 23, 17, 32, 22]
     sort = Sort(arr)
 
-    print(sort.quick_sort())
+    print(sort.bubble())
 
 if __name__=="__main__":
     main()
