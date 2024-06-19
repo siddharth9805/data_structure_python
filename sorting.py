@@ -31,12 +31,12 @@ class Sort:
         return self.arr
 
     def bubble(self):
-        for i in range(len(self.arr)):
-            for j in range(1,len(self.arr)):
-                if self.arr[j]<self.arr[j-1]:
-                    self.arr[j - 1],self.arr[j]=self.arr[j],self.arr[j - 1]
-
-        return self.arr
+        arr=self.arr
+        for i in range(len(arr)):
+            for j in range(1,len(arr)):
+                if arr[j]<arr[j-1]:
+                    arr[j],arr[j-1]=arr[j-1],arr[j]
+        return arr
 
     def qucik(self):
         return self._quicksort_recursion(self.arr)

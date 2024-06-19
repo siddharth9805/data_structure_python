@@ -156,18 +156,16 @@ class ll:
     def swap_node(self):
         self._swap_node(self.head,0)
 
-    def _swap_node(self,current,j):
-        if current is None:
+    def _swap_node(self,head,j):
+        if head is None:
             return
-
-        temp=current.next
-        if temp is None:
-            return current
-        k=temp.next
-        temp.next=current
+        current = head
+        temp = current.next
+        k = temp.next
+        temp.next = current
         if j==0:
             self.head=temp
-        current.next=self._swap_node(k,1)
+        current.next = self._swap_node(k,1)
         return temp
 
     def rotate(self,k):
@@ -281,7 +279,8 @@ def main ():
     l.add_node(4)
     l.add_node(5)
     l.add_node(6)
-    l.reverse_recursion()
+    l.printll()
+    l.swap_node()
     l.printll()
 
 if __name__=="__main__":

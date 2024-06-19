@@ -26,7 +26,7 @@ class Heap:
         self.heap[0]=self.heap[length]
         self.heap.pop(length)
         self.heapifydown(0,length)
-        self.heap.append(root)
+        self.heap[length-1]=root
         return root
 
     def sort(self):
@@ -69,4 +69,4 @@ def main():
     print(heap.heap)
 
 if __name__=='__main__':
-    main()
+    main
